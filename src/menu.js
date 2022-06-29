@@ -1,23 +1,39 @@
 import './css/menu.css';
+import {volet} from './volet';
 
-let volet;
-export const addVolet = (()=> {
-    const createVolet = (()=> {
-        volet = document.createElement('div');
-        document.querySelector('#content').appendChild(volet);
-        volet.classList.add('volet');
-    })()
-    const makeVoletVisible = ()=> {
-       volet.classList.add('visible');
+const menuItems = (name, description, price)=> {
+    return {
+        name,
+        description,
+        price
     }
-    return {makeVoletVisible,
-    createVolet};
+}
+
+export const displayMenu = (()=> {
+    const menuCreation = [
+        menuItems("Mozzarella and Feta Pita Grilled Cheese", "Pita Grilled Cheese stuffed with Mediterranean favorites including melty mozzarella, feta, spinach, sundried tomatoes, and a little basil pesto", "17$"),
+        menuItems("Mediterranean Orzo Salad Recipe", "Mediterranean orzo salad recipe with feta, loads of crunchy vegetables, fresh herbs, and a tangy Greek dressing", "16$"),
+        menuItems("Creamy Pesto Ravioli", "Our specialty, home-made pasta filled with creamy fresh pesto", "21$")
+    ]
+
+    const menuContainer = document.createElement('div');
+    const createMenuContainer = (()=> {
+        menuContainer.classList.add('main');
+        volet.appendChild(menuContainer);
+    })()
+
+    return {
+        create : ()=>{
+            menuCreation.forEach(dish => {
+                const itemCreation = (() => {
+                    for (const key in dish){
+                        const itemDetail = document.createElement('p');
+                        itemDetail.textContent = dish[key];
+                        itemDetail.style.color='blue';
+                        menuContainer.appendChild(itemDetail)
+                    }
+                })()
+            })   
+        }
+    }
 })()
-
-const menu_details = document.createElement('div');
-menu_details.textContent = 'menuuu';
-menu_details.style.color = 'black';
-volet.appendChild(menu_details);
-
-
-
