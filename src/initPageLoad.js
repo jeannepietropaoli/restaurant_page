@@ -1,6 +1,8 @@
 import banner from './banner1.png';
 import './css/homePage.css';
 
+const CONTENT = document.querySelector('#content');
+
 const BANNER = (()=> {
     const BODY = document.querySelector('body');
     return {
@@ -29,6 +31,7 @@ const NAV_ELEMENTS = (()=> {
     const display = ()=> {
         NAVBAR.appendChild(createName());
         NAVBAR.appendChild(createNavUl());
+        CONTENT.appendChild(NAVBAR);
     }
     return {
        display,
@@ -36,7 +39,7 @@ const NAV_ELEMENTS = (()=> {
     }
 })()
 
-const MAIN_ELEMENTS = (()=> {
+export const MAIN_ELEMENTS = (()=> {
     const MAIN = document.createElement('div');
     MAIN.classList.add('main');
 
@@ -51,6 +54,8 @@ const MAIN_ELEMENTS = (()=> {
         return MAIN_BTN;
     }
     const display = ()=> {
+        console.log('hehe');
+        CONTENT.appendChild(MAIN);
         MAIN.appendChild(createMainH1());
         MAIN.appendChild(createMainBtn());
     }
@@ -60,18 +65,12 @@ const MAIN_ELEMENTS = (()=> {
     }
 })()
 
-const CONTENT_APPEND_ELEMENTS = ()=> {
-    const CONTENT = document.querySelector('#content');
-    CONTENT.appendChild(NAV_ELEMENTS.NAVBAR);
-    CONTENT.appendChild(MAIN_ELEMENTS.MAIN);
-};
 
 export const HOMEPAGE_ELEMENTS = (()=> {
     return  Object.assign({},
         BANNER.DISPLAY(),
         NAV_ELEMENTS.display(),
         MAIN_ELEMENTS.display(),
-        CONTENT_APPEND_ELEMENTS()
     )      
 })()
 

@@ -15,15 +15,17 @@ export const displayMenu = (()=> {
         menuItems("Mediterranean Orzo Salad Recipe", "Mediterranean orzo salad recipe with feta, loads of crunchy vegetables, fresh herbs, and a tangy Greek dressing", "16$"),
         menuItems("Creamy Pesto Ravioli", "Our specialty, home-made pasta filled with creamy fresh pesto", "21$")
     ]
-
-    const menuContainer = document.createElement('div');
-    const createMenuContainer = (()=> {
+    const createMenuContainer = ()=> {
+        const menuContainer = document.createElement('div');
         menuContainer.classList.add('main');
         volet.appendChild(menuContainer);
-    })()
+        return menuContainer;
+    }
 
     return {
         create : ()=>{
+            console.log('created')
+            const menuContainer = createMenuContainer();
             menuCreation.forEach(dish => {
                 const itemCreation = (() => {
                     for (const key in dish){
