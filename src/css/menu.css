@@ -1,0 +1,16 @@
+#content {
+    position: relative;
+}
+
+.volet {
+    height: 0%;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    bottom: 0;
+    transition: height 1s;
+}
+
+.visible {
+    height: 70%;
+}
