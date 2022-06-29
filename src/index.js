@@ -11,6 +11,11 @@ const home = document.querySelector('li:nth-of-type(1)');
 const menu = document.querySelector('li:nth-of-type(2)');
 const contact = document.querySelector('li:nth-of-type(3)');
 
+let currentScetion = "Home";
+function isNotCurrentSection (elementClicked){
+    return elementClicked !== currentScetion;
+}
+
 const removeMainSection = ()=> {
     if (Array.from(CONTENT.children).some(child => child.classList.contains('main'))){
         while (document.querySelector('.main').firstChild) {
@@ -28,41 +33,51 @@ const rollWhiteDiv = ()=> {
         setTimeout(()=> {document.querySelector('.visible').style.height = '70%'}, 1000);
 }
 
-const isSameSectionClick = ()=> {
-
-}
-
-menu.addEventListener('click', function() {
-    if (document.querySelector('.main')) removeMainSection();
-    if (document.querySelector('.visible')){
-        rollWhiteDiv();
-        setTimeout(()=> {displayMenu.create()}, 1000);
+menu.addEventListener('click', function(e) {
+    console.log(currentScetion);
+    if (isNotCurrentSection(e.target.innerText)){
+        if (document.querySelector('.main')) removeMainSection();
+        if (document.querySelector('.visible')){
+            rollWhiteDiv();
+            setTimeout(()=> {displayMenu.create()}, 1000);
+        }
+        else {
+            document.querySelector('.volet').style.height = '70%';
+            displayMenu.create();
+        }
+        addVolet.makeVoletVisible();
     }
-    else {
-        document.querySelector('.volet').style.height = '70%';
-        displayMenu.create();
-    }
-    addVolet.makeVoletVisible();
+    currentScetion = 'Menu';
 });
 
-contact.addEventListener('click', function() {
-    if (document.querySelector('.main')) removeMainSection();
-    if (document.querySelector('.visible')){
-        rollWhiteDiv();
-        setTimeout(()=> {displayMenu.create()}, 1000);
+contact.addEventListener('click', function(e) {
+    console.log(currentScetion);
+    if (isNotCurrentSection(e.target.innerText)){
+        if (document.querySelector('.main')) removeMainSection();
+        if (document.querySelector('.visible')){
+            rollWhiteDiv();
+            setTimeout(()=> {displayMenu.create()}, 1000);
+        }
+        else {
+            document.querySelector('.volet').style.height = '70%';
+            displayMenu.create();
+        }
+        addVolet.makeVoletVisible();
     }
-    else {
-        document.querySelector('.volet').style.height = '70%';
-        displayMenu.create();
-    }
-    addVolet.makeVoletVisible();
+    currentScetion = 'Contact';
 });
 
-home.addEventListener('click', function() {
-    if (document.querySelector('.main')) removeMainSection();
-    document.querySelector('.visible').style.height = '0%';
-    volet.classList.remove('visible');
-    setTimeout(()=> {MAIN_ELEMENTS.display()}, 100);
+home.addEventListener('click', function(e) {
+    console.log(currentScetion);
+    if (isNotCurrentSection(e.target.innerText)){
+        if (document.querySelector('.main')) removeMainSection();
+        if (document.querySelector('.visible')){
+            document.querySelector('.visible').style.height = '0%';
+            volet.classList.remove('visible');
+        }
+        setTimeout(()=> {MAIN_ELEMENTS.display()}, 100);
+    }
+    currentScetion = 'Home';
 });
 
 
