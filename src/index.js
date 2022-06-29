@@ -1,5 +1,6 @@
 import {addVolet} from './volet';
 import { displayMenu } from './menu';
+import {displayContact} from './contact';
 import {CONTENT} from './volet';
 import {volet} from './volet';
 import {MAIN_ELEMENTS} from './initPageLoad';
@@ -43,11 +44,12 @@ const rollWhiteDiv = ()=> {
         setTimeout(()=> {document.querySelector('.visible').style.height = '70%'}, 1000);
 }
 
-function displayContent(){
+function displayContent(e){
+    console.log(e.target.innerText);
     if (document.querySelector('.main')) removeMainSection();
     if (document.querySelector('.visible')){
         rollWhiteDiv();
-        setTimeout(()=> {displayMenu.create()}, 1000);
+        setTimeout(()=> {e.target.innerText === 'Menu' ? displayMenu.create() : displayContact.create()}, 1000);
     }
     else {
         document.querySelector('.volet').style.height = '70%';
@@ -58,7 +60,7 @@ function displayContent(){
 
 for (let i=1; i<=2; i++){
     Object.values(navElements)[i].addEventListener('click', function(e) {
-        if (navSection.isNotCurrentSection(e.target.innerText)) displayContent();
+        if (navSection.isNotCurrentSection(e.target.innerText)) displayContent(e);
         navSection.setCurrentSection(e);
     });
 }
