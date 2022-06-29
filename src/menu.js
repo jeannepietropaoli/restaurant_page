@@ -18,6 +18,7 @@ export const displayMenu = (()=> {
     const createMenuContainer = ()=> {
         const menuContainer = document.createElement('div');
         menuContainer.classList.add('main');
+        menuContainer.setAttribute('id','menu');
         volet.appendChild(menuContainer);
         return menuContainer;
     }
@@ -27,12 +28,14 @@ export const displayMenu = (()=> {
             console.log('created')
             const menuContainer = createMenuContainer();
             menuCreation.forEach(dish => {
+                const itemContainer = document.createElement('div');
+                itemContainer.classList.add('itemContainer');
+                menuContainer.appendChild(itemContainer)
                 const itemCreation = (() => {
                     for (const key in dish){
                         const itemDetail = document.createElement('p');
                         itemDetail.textContent = dish[key];
-                        itemDetail.style.color='blue';
-                        menuContainer.appendChild(itemDetail)
+                        itemContainer.appendChild(itemDetail)
                     }
                 })()
             })   
