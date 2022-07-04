@@ -1,8 +1,8 @@
 #contact {
-    padding: 20px;
+    padding: 50px;
     background-color: white;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 450px);
     color: black;
 }
 
@@ -13,12 +13,12 @@
 #map {
     width: 400px;
     height: auto;
-    grid-column: 1 / -1;
 }
 
 .hoursContainer {
     display: flex;
     flex-direction: column;
+    padding: 20px;
 }
 
 .hoursContainer p {
@@ -32,6 +32,14 @@
 }
 
 .getInTouch {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
     border-left: 2px solid black;
-    padding: 10px;
+    padding: 20px;
+}
+
+.getInTouch > * {
+    margin: 0;
+    padding: 6px;
 }

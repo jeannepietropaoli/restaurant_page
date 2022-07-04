@@ -27,23 +27,30 @@ export const displayMenu = (()=> {
         return menuContainer;
     }
 
+    const createMenuItemContainer = (menuContainer)=> {
+        const itemContainer = document.createElement('div');
+        itemContainer.classList.add('itemContainer');
+        menuContainer.appendChild(itemContainer);
+        return itemContainer;
+    }
+
+    const itemDetail = (key, dish, itemContainer)=> {
+        const itemDetail = document.createElement('p');
+        itemDetail.textContent = dish[key];
+        itemContainer.appendChild(itemDetail)
+    }
+
     return {
         create : ()=>{
-            console.log('created')
             const menuContainer = createMenuContainer();
             menuCreation.forEach(dish => {
-                const itemContainer = document.createElement('div');
-                itemContainer.classList.add('itemContainer');
-                menuContainer.appendChild(itemContainer)
+                const itemContainer = createMenuItemContainer(menuContainer);
                 const itemCreation = (() => {
                     for (const key in dish){
-                        const itemDetail = document.createElement('p');
-                        itemDetail.textContent = dish[key];
-                        itemContainer.appendChild(itemDetail)
+                        itemDetail(key, dish, itemContainer);
                     }
                 })()
-            })
-            volet.style.width = menuContainer.style.width;   
+            })   
         }
     }
 })()
