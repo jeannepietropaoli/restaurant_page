@@ -1,6 +1,5 @@
 #contact {
     padding: 50px;
-    background-color: white;
     display: grid;
     grid-template-columns: repeat(auto-fit, 450px);
     color: black;

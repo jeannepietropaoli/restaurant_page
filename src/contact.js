@@ -1,5 +1,5 @@
 import {volet} from './volet';
-import map from './map_restaurant.png';
+import mapImg from './map_restaurant.png';
 import './css/contact.css';
 
 const hoursTemplate = (day, openingHours)=> {
@@ -9,22 +9,15 @@ const hoursTemplate = (day, openingHours)=> {
     }
 }
 
-export const displayContact = (()=> {
-    const contactContainer = document.createElement('div');
-    const createContactContainer = ()=> {
-        contactContainer.classList.add('main');
-        contactContainer.setAttribute('id','contact');
-        volet.appendChild(contactContainer);
-    }
-    
-    const hours = [
-            hoursTemplate('Monday', '11:30 - 21:00'),
-            hoursTemplate('Tuesday', '11:30 - 21:00'),
-            hoursTemplate('Wednesday', '11:30 - 21:00'),
-            hoursTemplate('Thursday', '11:30 - 21:00'),
-            hoursTemplate('Friday', '11:30 - 23:30'),
-            hoursTemplate('Saturday', '11:30 - 23:30'),
-            hoursTemplate('Sunday', '11:30 - 21:00'),
+const hours = (()=> {
+    const openingHours = [
+        hoursTemplate('Monday', '11:30 - 21:00'),
+        hoursTemplate('Tuesday', '11:30 - 21:00'),
+        hoursTemplate('Wednesday', '11:30 - 21:00'),
+        hoursTemplate('Thursday', '11:30 - 21:00'),
+        hoursTemplate('Friday', '11:30 - 23:30'),
+        hoursTemplate('Saturday', '11:30 - 23:30'),
+        hoursTemplate('Sunday', '11:30 - 21:00'),
     ]
 
     const displayHoursTitle = (hoursContainer) => {
@@ -33,11 +26,11 @@ export const displayContact = (()=> {
         hoursContainer.appendChild(hoursSectionTitle);
     }
 
-    const displayHours = ()=> {
+    const display = ()=> {
         const hoursContainer = document.createElement('div');
         hoursContainer.classList.add('hoursContainer');
         displayHoursTitle(hoursContainer);
-        hours.forEach(day => {
+        openingHours.forEach(day => {
             const dayOpening = document.createElement('p');
             hoursContainer.appendChild(dayOpening);
             for (const key in day){
@@ -46,7 +39,11 @@ export const displayContact = (()=> {
         })
         return hoursContainer;
     }
+    
+    return { display }
+})()
 
+const getInTouch = (()=> {
     const displayGetInTouchTitle = (getInTouch) => {
         const getInTouchTitle = document.createElement('h2');
         getInTouchTitle.textContent = 'Get in touch !';
@@ -61,7 +58,7 @@ export const displayContact = (()=> {
         getInTouch.append(p1, p2);
     }
 
-    const displayGetInTouch = () => {
+    const display = () => {
         const getInTouch = document.createElement('div');
         getInTouch.classList.add('getInTouch');
         displayGetInTouchTitle(getInTouch);
@@ -69,27 +66,43 @@ export const displayContact = (()=> {
         return getInTouch;
     }
 
+    return {display}
+})()
+
+const map = (()=> {
+    return {
+        display : (contactContainer)=> {
+            const mapContainer = document.createElement('img');
+            mapContainer.src = mapImg;
+            contactContainer.appendChild(mapContainer);
+            mapContainer.setAttribute('id', 'map');
+            return mapContainer
+        }
+    }
+})()
+
+export const displayContact = (()=> {
+    const contactContainer = document.createElement('div');
+
+    const createContactContainer = ()=> {
+        contactContainer.classList.add('main');
+        contactContainer.setAttribute('id','contact');
+        volet.appendChild(contactContainer);
+    }
+
     const bundleInfos = ()=> {
         const bundle = document.createElement('div');
         bundle.classList.add('bundleInfos');
         contactContainer.appendChild(bundle);
-        bundle.appendChild(displayHours());
-        bundle.appendChild(displayGetInTouch());
-    }
-
-    const displayMap = ()=> {
-        const mapContainer = document.createElement('img');
-        contactContainer.appendChild(mapContainer);
-        mapContainer.src = map;
-        mapContainer.setAttribute('id', 'map');
+        bundle.appendChild(hours.display());
+        bundle.appendChild(getInTouch.display());
     }
         
     return {
         create : ()=>{
             createContactContainer();
             bundleInfos();
-            displayMap();
-            volet.style.width = contactContainer.style.width;
+            map.display(contactContainer);
         }
     }
 })()

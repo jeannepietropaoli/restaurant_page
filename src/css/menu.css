@@ -46,5 +46,6 @@
 
 .itemContainer p:nth-of-type(3) {
     grid-area: price;
+    justify-self: end;
 }
 

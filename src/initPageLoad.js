@@ -11,8 +11,12 @@ const BANNER = (()=> {
 })()
 
 const NAV_ELEMENTS = (()=> {
-    const NAVBAR = document.createElement('div');
-    NAVBAR.classList.add('nav');
+    const NAVBAR = (()=> {
+        const NAVBAR_ELMT = document.createElement('div');
+        NAVBAR_ELMT.classList.add('nav');
+        return NAVBAR_ELMT;
+    })()
+
     const createName = ()=> {
         const RESTAURANT_NAME = document.createElement('h2');
         RESTAURANT_NAME.textContent = "French collar";
@@ -34,14 +38,16 @@ const NAV_ELEMENTS = (()=> {
         CONTENT.appendChild(NAVBAR);
     }
     return {
-       display,
-       NAVBAR
+       display
     }
 })()
 
 export const MAIN_ELEMENTS = (()=> {
-    const MAIN = document.createElement('div');
-    MAIN.classList.add('main');
+    const MAIN = (()=> {
+        const MAIN_ELMT = document.createElement('div');
+        MAIN_ELMT.classList.add('main');
+        return MAIN_ELMT
+    })()
 
     const createMainH1 = ()=> {
         const MAIN_H1 = document.createElement('h1');
@@ -54,7 +60,6 @@ export const MAIN_ELEMENTS = (()=> {
         return MAIN_BTN;
     }
     const display = ()=> {
-        console.log('hehe');
         CONTENT.appendChild(MAIN);
         MAIN.appendChild(createMainH1());
         MAIN.appendChild(createMainBtn());
@@ -64,7 +69,6 @@ export const MAIN_ELEMENTS = (()=> {
         MAIN
     }
 })()
-
 
 export const HOMEPAGE_ELEMENTS = (()=> {
     return  Object.assign({},

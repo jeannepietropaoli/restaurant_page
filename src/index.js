@@ -48,7 +48,6 @@ const rollWhiteDiv = ()=> {
 }
 
 function displayContent(e){
-    console.log(e.target.innerText);
     if (document.querySelector('.main')) removeMainSection();
     if (document.querySelector('.visible')){
         rollWhiteDiv();
