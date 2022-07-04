@@ -1,6 +1,6 @@
 import {addVolet} from './volet';
 import { displayMenu } from './menu';
-import {displayContact} from './contact';
+import {displayContact} from './contact'; 
 import {CONTENT} from './volet';
 import {volet} from './volet';
 import {MAIN_ELEMENTS} from './initPageLoad';
@@ -27,7 +27,7 @@ const navSection = (()=> {
     }
 })()
 
-const removeMainSection = ()=> {
+const removeMainSection = ()=> { 
     if (Array.from(CONTENT.children).some(child => child.classList.contains('main'))){
         while (document.querySelector('.main').firstChild) {
             document.querySelector('.main').removeChild(document.querySelector('.main').firstChild);
@@ -35,6 +35,9 @@ const removeMainSection = ()=> {
         CONTENT.removeChild(document.querySelector('.main'));
     }
     else if (Array.from(volet.children).some(child => child.classList.contains('main'))){
+        while (document.querySelector('.main').firstChild) {
+            document.querySelector('.main').removeChild(document.querySelector('.main').firstChild);
+        }
         volet.removeChild(document.querySelector('.main'))
     }
 }
@@ -53,7 +56,7 @@ function displayContent(e){
     }
     else {
         document.querySelector('.volet').style.height = '70%';
-        displayMenu.create();
+        e.target.innerText === 'Menu' ? displayMenu.create() : displayContact.create();
     }
     addVolet.makeVoletVisible();
 }

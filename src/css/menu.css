@@ -17,6 +17,7 @@
 
 #menu {
     display: grid;
+    box-sizing: border-box;
     grid-template-columns: repeat(auto-fit, 400px);
     padding: 35px;
     justify-items: stretch;
@@ -44,6 +45,4 @@
 .itemContainer p:nth-of-type(3) {
     grid-area: price;
 }
-
-/*   oooo */
 

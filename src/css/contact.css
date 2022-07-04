@@ -1,0 +1,37 @@
+#contact {
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.bundleInfos {
+    display: flex;
+}
+
+#map {
+    width: 400px;
+    height: auto;
+    grid-column: 1 / -1;
+}
+
+.hoursContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.hoursContainer p {
+    margin: 0;
+    padding: 6px;
+}
+
+.hoursContainer h2 {
+    margin: 0;
+    padding: 6px;
+}
+
+.getInTouch {
+    border-left: 2px solid black;
+    padding: 10px;
+}

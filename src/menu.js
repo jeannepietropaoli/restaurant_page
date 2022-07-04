@@ -42,7 +42,8 @@ export const displayMenu = (()=> {
                         itemContainer.appendChild(itemDetail)
                     }
                 })()
-            })   
+            })
+            volet.style.width = menuContainer.style.width;   
         }
     }
 })()
